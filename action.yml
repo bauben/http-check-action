@@ -1,0 +1,21 @@
+name: HTTP Check bauben
+description: 'A simple curl check for a running container'
+author: 'bauben'
+inputs:
+  url:
+    description: 'The url you want to curl against'
+    required: true
+  expected:
+    description: 'The expected outcome you seek'
+    required: true
+  retries:
+    description: 'How often to retry the request'
+    default: 10
+outputs:
+  response:
+    description: 'The answer of the server.'
+    value: {TODO}
+
+runs:
+  using: node24
+  main: dist/index.js
