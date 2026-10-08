@@ -28701,7 +28701,7 @@ for(let x = 0; x < numberOfRetries; x++){
     }
 
     result = await response.text();
-    info(`The feteched text is ${result}`);
+    info(`The fetched text is ${result}`);
     break;
   } catch (error$1) {
     error(error$1.message);
