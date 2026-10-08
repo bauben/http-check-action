@@ -28678,6 +28678,13 @@ function setFailed(message) {
 function error(message, properties = {}) {
     issueCommand('error', toCommandProperties(properties), message instanceof Error ? message.toString() : message);
 }
+/**
+ * Writes info to log with console.log.
+ * @param message info message
+ */
+function info(message) {
+    process.stdout.write(message + os.EOL);
+}
 
 const url = getInput('url', { required: true });
 const expected = getInput('expected', { required: true });
@@ -28689,15 +28696,15 @@ for(let x = 0; x < numberOfRetries; x++){
    try {
     const response = await fetch(url);
     if (!response.ok) {
-        error(`Response for try ${x} was ${response.status}`);
+        info(`Response for try ${x + 1} was ${response.status}`);
         await new Promise(r => setTimeout(r, 1000));
         continue;
     }
 
     result = await response.text();
     break;
-  } catch (error$1) {
-    error(`An error occured during try ${x}: ${error$1.message}`);
+  } catch (error) {
+    info(`An error occured during try ${x}: ${error.message}`);
     await new Promise(r => setTimeout(r, 1000));
   }
 }
