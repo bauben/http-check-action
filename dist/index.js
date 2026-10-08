@@ -28709,8 +28709,12 @@ for(let x = 0; x < numberOfRetries; x++){
   }
 }
 
-setOutput('response',result);
-if(result != expected){
-    setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
+if(result == undefined){
+    setFailed("The server couldn't be reached!");
+} else {
+    setOutput('response',result);
+    if(result != expected){
+        setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
+    }
 }
 //# sourceMappingURL=index.js.map

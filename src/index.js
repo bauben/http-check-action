@@ -23,7 +23,11 @@ for(let x = 0; x < numberOfRetries; x++){
   }
 }
 
-core.setOutput('response',result);
-if(result != expected){
-    core.setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
+if(result == undefined){
+    core.setFailed("The server couldn't be reached!");
+} else {
+    core.setOutput('response',result);
+    if(result != expected){
+        core.setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
+    }
 }
