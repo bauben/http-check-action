@@ -15,7 +15,7 @@ for(let x = 0; x < numberOfRetries; x++){
     }
 
     result = await response.text()
-    core.info(`The feteched text is ${result}`)
+    core.info(`The fetched text is ${result}`)
     break;
   } catch (error) {
     core.error(error.message);
