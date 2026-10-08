@@ -28700,8 +28700,9 @@ for(let x = 0; x < numberOfRetries; x++){
         continue;
     }
 
-    result = await res.text();
+    result = await response.text();
     info(`The feteched text is ${result}`);
+    break;
   } catch (error$1) {
     error(error$1.message);
     await new Promise(r => setTimeout(r, 1000));
@@ -28710,6 +28711,6 @@ for(let x = 0; x < numberOfRetries; x++){
 
 setOutput('response',result);
 if(result != expected){
-    setFailed("There is a missmatch between the expected and the actual value.");
+    setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
 }
 //# sourceMappingURL=index.js.map

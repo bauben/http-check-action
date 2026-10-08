@@ -14,8 +14,9 @@ for(let x = 0; x < numberOfRetries; x++){
         continue;
     }
 
-    result = await res.text()
+    result = await response.text()
     core.info(`The feteched text is ${result}`)
+    break;
   } catch (error) {
     core.error(error.message);
     await new Promise(r => setTimeout(r, 1000))
@@ -24,5 +25,5 @@ for(let x = 0; x < numberOfRetries; x++){
 
 core.setOutput('response',result);
 if(result != expected){
-    core.setFailed("There is a missmatch between the expected and the actual value.");
+    core.setFailed(`There is a missmatch between the expected and the actual value. /n ${result} != ${expected}`);
 }
