@@ -10,7 +10,7 @@ for(let x = 0; x < numberOfRetries; x++){
    try {
     const response = await fetch(url);
     if (!response.ok) {
-        core.error(`Response for try ${x} was ${response.status}`);
+        core.info(`Response for try ${x} was ${response.status}`);
         await new Promise(r => setTimeout(r, 1000))
         continue;
     }
@@ -18,7 +18,7 @@ for(let x = 0; x < numberOfRetries; x++){
     result = await response.text()
     break;
   } catch (error) {
-    core.error(`An error occured during try ${x}: ${error.message}`);
+    core.info(`An error occured during try ${x}: ${error.message}`);
     await new Promise(r => setTimeout(r, 1000))
   }
 }
