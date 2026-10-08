@@ -14,7 +14,6 @@ inputs:
 outputs:
   response:
     description: 'The answer of the server.'
-    value: {TODO}
 
 runs:
   using: node24
