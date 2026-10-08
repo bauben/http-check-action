@@ -10,21 +10,21 @@ for(let x = 0; x < numberOfRetries; x++){
    try {
     const response = await fetch(url);
     if (!response.ok) {
+        core.error(`Response for try ${x} was ${response.status}`);
         await new Promise(r => setTimeout(r, 1000))
         continue;
     }
 
     result = await response.text()
-    core.info(`The fetched text is ${result}`)
     break;
   } catch (error) {
-    core.error(error.message);
+    core.error(`An error occured during try ${x}: ${error.message}`);
     await new Promise(r => setTimeout(r, 1000))
   }
 }
 
 if(result == undefined){
-    core.setFailed("The server couldn't be reached!");
+    core.setFailed(`Couldn't reach ${url} in ${retries} tries.`);
 } else {
     core.setOutput('response',result);
     if(result != expected){
