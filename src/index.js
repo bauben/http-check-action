@@ -18,7 +18,7 @@ for(let x = 0; x < numberOfRetries; x++){
     result = await response.text()
     break;
   } catch (error) {
-    core.info(`An error occured during try ${x}: ${error.message}`);
+    core.info(`An error occured during try ${x + 1}: ${error.message}`);
     await new Promise(r => setTimeout(r, 1000))
   }
 }
